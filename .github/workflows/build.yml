@@ -37,6 +37,12 @@ jobs:
           name: whisper-bin
           path: whisper.cpp/bin
 
+      - name: Upload the npm package artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: whisper-npm
+          path: whisper.cpp/bindings/javascript
+
   # android:
   #   runs-on: ubuntu-latest
 
