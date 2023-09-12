@@ -27,7 +27,7 @@ jobs:
           # cache: 'npm'
 
       - name: Install & Compile
-        working-directory: examples/addon.node
+        working-directory: examples/addon.node/
         run: |
           pwd
           npm install
