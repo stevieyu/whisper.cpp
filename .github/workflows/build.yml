@@ -29,6 +29,7 @@ jobs:
       - name: Install & Compile
         working-directory: examples/addon.node
         run: |
+          pwd
           npm install
           npx -y cmake-js compile -T whisper-addon -B Release
           du -sh *
