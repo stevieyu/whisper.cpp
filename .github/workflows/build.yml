@@ -30,7 +30,7 @@ jobs:
       - name: Install package.json dependencies
         # working-directory: ./examples/addon.node
         run: |
-          du -sh .
+          du -sh *
           npm install
 
       - name: Compile addon.node
