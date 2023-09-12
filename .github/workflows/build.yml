@@ -36,7 +36,7 @@ jobs:
         working-directory: whisper.cpp
         run: |
           npx cmake-js compile -T whisper-addon -B Release
-          du -sh *
+          du -sh build/Release/*
           
 
   # emscripten:
