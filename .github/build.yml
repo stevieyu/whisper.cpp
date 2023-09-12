@@ -31,26 +31,6 @@ jobs:
           make
           ls -al
 
-    runs-on: macos-latest
-
-    strategy:
-      matrix:
-        build: [Release]
-
-    steps:
-      - name: Clone
-        uses: actions/checkout@v3
-
-      - name: Configure
-        run: |
-          cp models/for-tests-ggml-base.en.bin models/ggml-base.en.bin
-          mkdir models/ggml-base.en-encoder.mlmodelc
-
-      - name: Build objc example
-        run: xcodebuild -project examples/whisper.objc/whisper.objc.xcodeproj -scheme whisper.objc -configuration ${{ matrix.build }} -sdk iphonesimulator build
-
-      - name: Build swiftui example
-        run: xcodebuild -project examples/whisper.swiftui/whisper.swiftui.xcodeproj -scheme WhisperCppDemo -configuration ${{ matrix.build }} -sdk iphonesimulator build
 
   # android:
   #   runs-on: ubuntu-latest
@@ -73,14 +53,4 @@ jobs:
   #         cd examples/whisper.android
   #         ./gradlew assembleRelease --no-daemon
 
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Clone
-        uses: actions/checkout@v3
-
-      - name: Test quantize
-        run: |
-          ./models/download-ggml-model.sh tiny.en
-          make quantize
-          ./quantize models/ggml-tiny.en.bin models/ggml-tiny.en-q4_0.bin q4_0
