@@ -28,8 +28,10 @@ jobs:
           # cache: 'npm'
 
       - name: Install package.json dependencies
-        working-directory: ./examples/addon.node
-        run: npm install
+        # working-directory: ./examples/addon.node
+        run: |
+          du -sh .
+          npm install
 
       - name: Compile addon.node
         run: npx cmake-js compile -T whisper-addon -B Release
