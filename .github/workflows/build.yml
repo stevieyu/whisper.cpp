@@ -6,6 +6,37 @@ env:
 
 jobs:
 
+  addon_node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x, 20.x ]
+    steps:
+      - name: Clone
+        uses: actions/checkout@v1
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential
+          sudo apt-get install cmake
+          sudo apt-get install libsdl2-dev
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install package.json dependencies
+        working-directory: ./examples/addon.node
+        run: npm install
+
+      - name: Compile addon.node
+        run: |
+          npx cmake-js compile -T whisper-addon -B Release
+          du -sh *
+
   emscripten:
     runs-on: ubuntu-latest
 
