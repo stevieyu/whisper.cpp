@@ -19,20 +19,20 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential cmake libsdl2-dev
+          ./build.sh
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          # cache: 'npm'
+          cache: 'npm'
 
-      - name: Install & Compile
-        run: |
-          pwd
-          cd examples/addon.node
-          npm install
-          npx -y cmake-js compile -T whisper-addon -B Release
-          du -sh *
+      - name: Install package.json dependencies
+        working-directory: ./examples/addon.node
+        run: npm install
+
+      - name: Compile addon.node
+        run: npx cmake-js compile -T whisper-addon -B Release
           
 
   # emscripten:
