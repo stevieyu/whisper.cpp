@@ -27,9 +27,8 @@ jobs:
           # cache: 'npm'
 
       - name: Install & Compile
-        working-directory: examples/addon.node/
         run: |
-          pwd
+          cd whisper.cpp/examples/addon.node
           npm install
           npx -y cmake-js compile -T whisper-addon -B Release
           du -sh *
