@@ -30,14 +30,13 @@ jobs:
       - name: Install package.json dependencies
         working-directory: whisper.cpp/examples/addon.node
         run: |
-          du -sh *
           npm install
 
       - name: Compile addon.node
         working-directory: whisper.cpp
         run: |
-          du -sh *
           npx cmake-js compile -T whisper-addon -B Release
+          du -sh *
           
 
   # emscripten:
