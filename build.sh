@@ -1,4 +1,5 @@
 #!/bin/sh
 
-cd whisper.cpp && git pull && cd -
+# git submodule add https://github.com/ggerganov/whisper.cpp.git
+git submodule update --init --recursive
 du -sh whisper.cpp
