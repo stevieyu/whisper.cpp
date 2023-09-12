@@ -28,8 +28,9 @@ jobs:
           # cache: 'npm'
 
       - name: Install package.json dependencies
-        working-directory: ./examples/addon.node
+        # working-directory: ./examples/addon.node
         run: |
+          cd whisper.cpp/examples/addon.node
           du -sh *
           npm install
 
