@@ -44,42 +44,42 @@ jobs:
           name: whisper-addon.node
           path: addon.node
 
-  # emscripten:
-  #   runs-on: ubuntu-latest
+  emscripten:
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       build: [Release]
+    strategy:
+      matrix:
+        build: [Release]
 
-  #   steps:
-  #     - name: Clone
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Clone
+        uses: actions/checkout@v3
 
-  #     - name: Setup emsdk
-  #       uses: mymindstorm/setup-emsdk@v12
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v12
 
-  #     - name: Verify
-  #       run: emcc -v
+      - name: Verify
+        run: emcc -v
 
-  #     - name: Build
-  #       run: |
-  #         ./build.sh
-  #         cd whisper.cpp
-  #         emcmake cmake . -DCMAKE_BUILD_TYPE=${{ matrix.build }}
-  #         make
-  #         du -sh bin/*
+      - name: Build
+        run: |
+          ./build.sh
+          cd whisper.cpp
+          emcmake cmake . -DCMAKE_BUILD_TYPE=${{ matrix.build }}
+          make
+          du -sh bin/*
 
-  #     - name: Upload the vendor artifact
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: whisper-bin
-  #         path: whisper.cpp/bin
+      - name: Upload the vendor artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: whisper-bin
+          path: whisper.cpp/bin
 
-  #     - name: Upload the npm package artifact
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: whisper-npm
-  #         path: whisper.cpp/bindings/javascript
+      - name: Upload the npm package artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: whisper-npm
+          path: whisper.cpp/bindings/javascript
 
   # android:
   #   runs-on: ubuntu-latest
