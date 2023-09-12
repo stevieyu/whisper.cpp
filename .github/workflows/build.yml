@@ -31,6 +31,11 @@ jobs:
           make
           du -sh bin/*
 
+      - name: Upload the vendor artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: whisper-bin
+          path: whisper.cpp/bin
 
   # android:
   #   runs-on: ubuntu-latest
