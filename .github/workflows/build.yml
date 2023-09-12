@@ -28,6 +28,7 @@ jobs:
 
       - name: Install & Compile
         run: |
+          pwd
           cd whisper.cpp/examples/addon.node
           npm install
           npx -y cmake-js compile -T whisper-addon -B Release
