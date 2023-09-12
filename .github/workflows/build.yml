@@ -36,8 +36,13 @@ jobs:
         working-directory: whisper.cpp
         run: |
           npx cmake-js compile -T whisper-addon -B Release
-          du -sh build/Release/*
+          cp -r build/Release/* ../addon.node/${{ matrix.node-version }}
           
+      - name: Upload the addon.node artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: whisper-addon.node
+          path: addon.node
 
   # emscripten:
   #   runs-on: ubuntu-latest
