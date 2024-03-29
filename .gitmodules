@@ -1,3 +1,5 @@
 [submodule "whisper.cpp"]
 	path = whisper.cpp
+	shallow = true
+	branch = master
 	url = https://github.com/ggerganov/whisper.cpp.git
