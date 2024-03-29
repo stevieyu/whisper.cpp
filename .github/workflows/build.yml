@@ -13,7 +13,7 @@ jobs:
         node-version: [ 18.x ]
     steps:
       - name: Clone
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Dependencies
         run: |
@@ -22,7 +22,7 @@ jobs:
           ./build.sh
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           # cache: 'npm'
@@ -39,7 +39,7 @@ jobs:
           mkdir -p ../addon.node/${{ matrix.node-version }} && cp -r build/Release/* ../addon.node/${{ matrix.node-version }}
           
       - name: Upload the addon.node artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: whisper-addon.node
           path: addon.node
